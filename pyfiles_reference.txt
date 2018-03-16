@@ -24,7 +24,7 @@ line 112-this is an example of baselinks. You can change baselinks depending
           linklist parse. The data also is limited to 198510 and beyond (change
           if necessary).
 
-Model.py
+model.py
 This file generates a GEV based on calculated shape, scale, and location.
 The method for these parameters is documented in the reference_publications
 directory with a paper by Hoskins.
@@ -80,7 +80,7 @@ For uploading data to SQL or generating csv files that use location_parameters.p
 please make sure all the latitude and longitudes of interest are referenced in the
 the 'VIC_Castro_Regions.csv' or the replacement file for this.
 
-slloader.py
+sqloader.py
 This file uploads to a SQL database (in my case I used an Amazon RDS instance).
 The database will run code for the latitudes and longitudes of interest and produce
 a table with ratio, model, latitude, longitude. The SQL queries that are useful are

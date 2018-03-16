@@ -14,6 +14,7 @@ from location_parameters import find_beta_TBFW
 #dfsource.index=dfsource['wateryear']
 #reads in the saved file on the server that has all necessary values for reference
 
+# GSM -- THIS FUNCTION EXTRACTS THE DATA FOR JUST ONE GRID CELL FOR YR-30:YR
 def get_extreme_values(year, coord, dfsource):
     #takes the dataframe that is already cleaned (should be processed
     #through NetCDFDataClean.py) and has wateryear as the index
@@ -112,7 +113,7 @@ def gev_samples_allyears(startyear, coord, endyear, dfsource):
     #adjusts for different TBFW in different regions
     #adjusts for beta in different regions
     beta, TBFW=find_beta_TBFW(coord)
-    pctl=find_sample_pctl(TBFW)
+    pctl=find_sample_pctl(TBFW)		# GSM -- "pctl" refers to the 1.2-yr, or 1.5-yr, etc., corresponding to BFW
 
     for year in range(startyear, endyear+1):
         dataarray=get_extreme_values(year, coord, dfsource)

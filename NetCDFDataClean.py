@@ -9,6 +9,7 @@ import os
 import tempfile
 import multiprocessing
 
+# GUILLAUME CAN IGNORE THIS -- processing the example file
 def mainexample(filepath="Database files/hb2860_transient_runs.ccsm3_A1B.example (2).nc"):
     #for each saved file it will clean it up and produce the DataFrame
     #add in a different file path if you want
@@ -34,6 +35,7 @@ def mainexample(filepath="Database files/hb2860_transient_runs.ccsm3_A1B.example
     finaldf.to_csv('CCSM3_A1BExample.csv')
     return finaldf
 
+# GSM -- TO PROCESS NEW DATA NEED TO REPLACE AWS s3 BUCKET WITH ACTUAL PATH ON ATMOS SERVER
 def awsmain(keyfiltup):
     key, filename=keyfiltup
     s3=boto3.client("s3")
@@ -169,6 +171,7 @@ def fetch_netcdf(url):
         f.write(data)
     return Dataset('temp.nc')
 
+# GSM -- THIS TAKES A BASE URL AND EACH MODEL's UNIQUE NAME AND WILL CREATE A DATAFRAME FOR IT/
 def dl_allfiles(baselink, linklist):
     #each link is by month
     #concats all the monthly data sets into one
@@ -176,7 +179,8 @@ def dl_allfiles(baselink, linklist):
     #and convert to cfs
     dflist=[]
     for link in linklist:
-        group=dl_one_netcdf(baselink, link)
+        group=dl_one_netcdf(baselink, link)		# GSM -- THIS IS THE FUNCTION TO DOWNLOAD NETCDF (diff from fetch_netcdf)
+
         clist=makecoordlist(group)
         tlist=maketimelist(group)
         baseflowdf=makedfbaseflow(group, clist,tlist)
